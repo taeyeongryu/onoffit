@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.board.model.dao.OnUserMembershipDao">
+	<select id="selectMembershipByUserId" parameterType="String" resultType="OnUserMembership">
+		SELECT *
+		FROM on_user_membership
+		WHERE user_id = #{user_id}
+	</select>
+	
+	<select id="selectAllMembership" resultType="OnUserMembership">
+		SELECT *
+		FROM on_user_membership
+	</select>
+	<select id="selectMembershipByGroupId" parameterType="int" resultType="OnUserMembership">
+		SELECT *
+		FROM on_user_membership
+		WHERE group_id = #{group_id}
+	</select>
+	
+	<insert id="insertMembership" parameterType="OnUserMembership" keyProperty="membership_id" useGeneratedKeys="true">
+		INSERT INTO on_user_membership
+		(group_id, user_id)
+		VALUES (#{group_id}, #{ user_id})
+	</insert>
+	
+	<delete id="deleteMembership" parameterType="int">
+		DELETE FROM on_user_membership
+		WHERE membership_id = #{membership_id}
+	</delete>
+</mapper>

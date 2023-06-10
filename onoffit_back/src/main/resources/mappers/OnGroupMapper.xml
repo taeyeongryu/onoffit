@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.board.model.dao.OnGroupDao">
+	<select id="selectAll" resultType="OnGroup">
+		SELECT *
+		FROM on_group
+	</select>
+	<select id="selectOneGroup" parameterType="int" resultType="OnGroup">
+		SELECT *
+		FROM on_group
+		WHERE group_id = #{group_id}
+	</select>
+	<delete id="deleteGroup" parameterType="int">
+		DELETE
+		FROM on_group
+		WHERE group_id = #{group_id}
+	</delete>
+	<update id="updateGroup" parameterType="OnGroup">
+		UPDATE on_group
+		SET
+		group_title = #{group_title}, group_message = #{group_message}, group_description = #{group_description},
+		group_cnt = #{group_cnt}, group_image = #{group_image}, group_orgimage = #{group_orgimage}
+		WHERE group_id = #{group_id}
+	</update>
+	<insert id="insertGroup" parameterType="OnGroup" keyProperty="group_id" useGeneratedKeys="true">
+		INSERT INTO on_group
+		(group_title, group_message, group_description, group_cnt,
+		 group_leader_user_id,  group_image, group_orgimage)
+		VALUES(#{group_title}, #{group_message}, #{group_description}, 1,
+		 #{group_leader_user_id}, #{group_image}, #{group_orgimage})
+	</insert>
+</mapper>

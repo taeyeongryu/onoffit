@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.board.model.dao.VideoMembershipDao">
+	<select id="selectAllMemberships" parameterType="int" resultType="VideoMembership">
+		SELECT *
+		FROM video_membership
+		WHERE group_id=#{group_id}
+	</select>
+	
+	<select id="selectOneMembership" parameterType="int" resultType="VideoMembership">
+		SELECT *
+		FROM video_membership
+		WHERE membership_id = #{membership_id}
+	</select>
+	
+	<insert id="insertMembership" parameterType="VideoMembership" keyProperty="membership_id" useGeneratedKeys="true">
+		INSERT INTO video_membership
+		(video_id, group_id)
+		VALUES(#{video_id}, #{group_id})
+	</insert>
+	
+	<delete id="deleteMembership" parameterType="int">
+		DELETE FROM video_membership
+		WHERE membership_id = #{membership_id}
+	</delete>
+</mapper>

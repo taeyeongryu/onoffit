@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.board.model.dao.BoardLikeDao">
+	<select id="selectByWriterId" resultType="BoardLike" parameterType="String">
+		SELECT *
+		FROM board_like
+		WHERE writer_id = #{writer_id}
+	</select>
+	
+	<select id="selectByBoardIdx" resultType="BoardLike" parameterType="int">
+		SELECT *
+		FROM board_like
+		WHERE board_idx = #{board_id}
+	</select>
+	
+	<insert id="insertLike" parameterType="BoardLike" keyProperty="like_idx" useGeneratedKeys="true">
+		INSERT INTO board_like
+		(writer_id, board_idx)
+		VALUES(#{writer_id}, #{board_idx})
+	</insert>
+	
+	<delete id="deleteLike" parameterType="BoardLike">
+		DELETE FROM board_like
+		WHERE writer_id = #{writer_id} and board_idx =  #{board_idx}
+	</delete>
+</mapper>

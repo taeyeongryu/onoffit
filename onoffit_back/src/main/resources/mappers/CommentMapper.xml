@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.board.model.dao.CommentDao">
+	<select id="selectAllCommentsList" parameterType="int" resultType="BoardComment">
+		SELECT *
+		FROM board_comment
+		WHERE board_idx = #{board_idx}
+	</select>
+
+	<select id="selectComment" parameterType="int" resultType="BoardComment">
+		SELECT *
+		FROM board_comment
+		WHERE comment_idx = #{comment_idx}
+	</select>
+
+	<insert id="insertComment" parameterType="BoardComment" keyProperty="comment_idx" useGeneratedKeys="true">
+		INSERT INTO board_comment
+		(comment_content, writer_id, board_idx)
+		VALUES (#{comment_content},#{writer_id},#{board_idx})
+	</insert>
+
+	<delete id="deleteComment" parameterType="int">
+		DELETE FROM board_comment
+		WHERE comment_idx = #{comment_idx}
+	</delete>
+
+	<update id="updateComment" parameterType="BoardComment">
+		UPDATE board_comment
+		SET comment_content = #{comment_content}
+		WHERE comment_idx = #{comment_idx}
+	</update>
+
+</mapper>

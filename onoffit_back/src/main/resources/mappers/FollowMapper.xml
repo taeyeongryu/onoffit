@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.board.model.dao.FollowDao">
+	<select id="selectFollowList" parameterType="String">
+		SELECT *
+		FROM follow
+		WHERE follower_id = #{follower_id}
+	</select>
+	<insert id="insertFollow" parameterType="Follow" keyProperty="follow_id" useGeneratedKeys="true">
+		INSERT INTO follow
+		(follower_id, following_id)
+		VALUES(#{follower_id}, #{following_id})
+	</insert>
+	<delete id="deleteFollow" parameterType="int">
+		DELETE 
+		FROM follow
+		WHERE follow_id = #{follow_id}
+	</delete>
+</mapper>
